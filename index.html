@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f3ee">
+<meta name="description" content="מדריך מקיף בעברית: כל הקבצים והתיקיות ש-Claude Code שומר, מה המשמעות של כל אחד, ומה אפשר לעשות איתם בפועל.">
+<title>הקבצים של Claude Code - המדריך המלא</title>
+<style>
+:root{--bg:#f5f3ee;--paper:#fffefa;--ink:#202431;--muted:#5d6370;--line:#deddd6;--accent:#e45737;--accent-ink:#a83a23;--navy:#233557;--blue:#5276ac;font-family:Arial,"Noto Sans Hebrew",sans-serif;color:var(--ink)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:hidden}body{margin:0;overflow-x:hidden;background:var(--bg);line-height:1.75}a{color:var(--accent-ink)}a:focus-visible,summary:focus-visible{outline:3px solid var(--blue);outline-offset:3px}.wrap{width:calc(100% - 32px);max-width:1120px;margin-inline:auto;min-width:0}.skip{position:absolute;top:-120px;right:10px;background:#fff;padding:10px}.skip:focus{top:10px;z-index:10}.top{position:sticky;top:0;z-index:5;background:#fffefaee;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.top .wrap{display:flex;align-items:center;justify-content:space-between;min-height:72px;gap:20px}.brand{font-weight:900;font-size:1.08rem;letter-spacing:-.025em;color:var(--ink);text-decoration:none;white-space:nowrap}.brand span{color:var(--accent)}nav{display:flex;align-items:center;gap:6px;overflow:auto;scrollbar-width:none}nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;text-decoration:none;color:var(--ink);font-size:.87rem;font-weight:700;white-space:nowrap;border-radius:40px}nav a:hover{background:#f2e6dc}.hero{background:linear-gradient(133deg,#f8f3e7 0%,#fffefa 48%,#e8eff3 100%);border-bottom:1px solid var(--line);padding:88px 0 78px;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:380px;height:380px;border:1px solid #dfc5b4;border-radius:50%;left:-130px;top:-160px;box-shadow:0 0 0 60px #efe9db88,0 0 0 125px #f3eee744;pointer-events:none}.hero .wrap{position:relative;z-index:1}.eyebrow,.section-tag,.category{font-size:.75rem;font-weight:900;letter-spacing:.06em;color:var(--accent-ink)}.hero h1{font-size:clamp(2.5rem,6.5vw,5.2rem);font-weight:900;line-height:1.1;letter-spacing:-.055em;margin:18px 0 22px;max-width:840px}.hero p{font-size:clamp(1.08rem,2vw,1.36rem);line-height:1.65;max-width:660px;color:var(--muted);margin:0 0 28px}.pills{display:flex;gap:9px;flex-wrap:wrap}.pill{border-radius:100px;padding:6px 13px;background:#fffefa;border:1px solid #e5dacf;font-size:.8rem;color:var(--navy);font-weight:700}.intro{padding-top:38px}.notice{background:#fdf5e8;border:1px solid #ecdac3;border-radius:12px;padding:16px 20px;color:#635545;font-size:.91rem}.notice strong{color:#3c3328}main section{padding:88px 0;border-bottom:1px solid var(--line);scroll-margin-top:82px}.section-head{display:block;margin-bottom:32px}.section-head h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.12;letter-spacing:-.04em;margin:9px 0 14px}.section-head p{max-width:680px;color:var(--muted);font-size:1.05rem;margin:0}footer{background:#263553;color:#e9e9ec;padding:48px 0;font-size:.82rem}footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:700px){.top .wrap{display:block;padding-top:11px}.brand{display:block;margin-bottom:4px}nav{margin-inline:-8px;gap:0}nav a{font-size:.8rem;padding:0 11px}.hero{padding:57px 0 52px}.hero:after{width:220px;height:220px;left:-125px;top:-75px;box-shadow:0 0 0 40px #efe9db88}.hero h1{font-size:clamp(2.32rem,11vw,3.6rem)}.hero p{font-size:1.04rem}.intro{padding-top:24px}main section{padding:62px 0;scroll-margin-top:120px}.section-head{margin-bottom:23px}}
+</style>
+<style>
+.guide{max-width:920px;padding-block:48px 90px}.guide>h2{border-top:1px solid var(--line);padding-top:33px}.guide>h2:first-of-type{border:0;padding-top:0}.guide>p:first-of-type{font-size:1.1rem}.guide table{font-size:.9rem}.guide h2{font-size:clamp(1.5rem,4vw,2.1rem);margin:46px 0 16px;scroll-margin-top:110px}.guide h3{font-size:1.16rem;margin:30px 0 12px}.guide p,.guide li{font-size:1.02rem;line-height:1.9;color:var(--muted)}.guide strong{color:var(--ink)}.guide ul,.guide ol{padding-inline-start:24px}.guide li{margin-bottom:10px}.guide pre{direction:ltr;text-align:left;overflow-x:auto;background:#263553;color:#e9f4f6;border:1px solid var(--line);padding:16px;border-radius:10px;font-size:.86rem;line-height:1.6;max-width:100%}.guide code:not(pre code){direction:ltr;unicode-bidi:isolate;color:var(--accent);overflow-wrap:anywhere;font-size:.94em}.guide blockquote{margin:20px 0;padding:12px 20px;background:var(--paper);border-right:3px solid var(--accent);border-radius:7px}.guide blockquote p{margin:0}.guide a{overflow-wrap:anywhere}.guide table{border-collapse:collapse;width:100%;display:block;overflow:auto}.guide th,.guide td{border:1px solid var(--line);padding:10px;text-align:right;vertical-align:top}.guide th{background:#f2e9df}.guide hr{border:0;border-top:1px solid var(--line);margin:36px 0}.guide .toc{background:var(--paper);padding:18px 22px;border-radius:12px}.guide .toc a{display:inline-block;margin:4px 10px}
+.badge{display:inline-block;font-size:.68rem;font-weight:800;padding:2px 9px;border-radius:40px;vertical-align:middle;margin-inline-start:6px;white-space:nowrap}
+.b-commit{background:#e6efe2;color:#3d6630;border:1px solid #c9dcc0}.b-gitig{background:#fdeee6;color:#a8512f;border:1px solid #f2d3bf}.b-local{background:#ececec;color:#5a5a54;border:1px solid #d7d7d2}.b-auto{background:#fdf1df;color:#96621f;border:1px solid #eed9b4}
+.fcard{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px 26px;margin:18px 0;box-shadow:0 5px 18px #20243108}.fcard h4{margin:0 0 6px;font-size:1.08rem;overflow-wrap:anywhere}.fcard h4 code{font-size:.98rem}.fcard p{margin:8px 0}.fcard .when{font-size:.85rem;color:var(--navy);background:#eef2f8;border-radius:8px;padding:8px 12px;margin:10px 0}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">לתוכן</a>
+<header class="top"><div class="wrap"><a class="brand" href="#top">DATA<span>&amp;</span>AI / מדריכים</a><nav aria-label="ניווט ראשי"><a href="#map">המפה</a><a href="#claudemd">CLAUDE.md</a><a href="#settings">הגדרות</a><a href="#extensions">הרחבות</a><a href="#appdata">נתוני סשן</a><a href="#cleanup">ניקוי</a><a href="#sources">מקורות</a></nav></div></header>
+<div id="top" class="hero"><div class="wrap"><div class="eyebrow">מדריך מקיף · ספטמבר 2026</div><h1>כל מה ש-Claude Code שומר בקבצים.</h1><p>כל קובץ ותיקייה ש-Claude Code קורא או כותב: איפה הם גרים, למה הם משמשים, ומה אפשר לעשות איתם בפועל - במיוחד למי שבונה agents ומשתף setups עם צוות.</p><div class="pills"><span class="pill">CLAUDE.md</span><span class="pill">.claude/</span><span class="pill">settings.json</span><span class="pill">~/.claude.json</span><span class="pill">Transcripts</span><span class="pill">Auto memory</span></div></div></div>
+<div class="wrap intro"><div class="notice"><strong>אמינות.</strong> המדריך נכתב מול התיעוד הרשמי של Claude Code (code.claude.com/docs) ב-27 בספטמבר 2026, וכל קישורי המקור מופיעים בסוף. המבנה משתנה בין גרסאות; היכן שהתיעוד מציין מספר גרסה - ציינו אותו. דברים שלא אומתו בתיעוד מסומנים במפורש.</div></div>
+<main id="main" class="wrap guide">
+
+<h2 id="map">המפה הגדולה: שלוש שכבות של קבצים</h2>
+<p>Claude Code עובד עם שלוש שכבות קבצים. להבין איזו שכבה קובץ שייך אליה היא 80% מהמדריך:</p>
+<table>
+<thead><tr><th>שכבה</th><th>איפה</th><th>למה היא משמשת</th><th>משותפת ב-git?</th></tr></thead>
+<tbody>
+<tr><td><strong>פרויקט</strong></td><td>שורש ה-repo ו-‎<code>.claude/</code> בתוכו</td><td>הוראות, הגדרות והרחבות שהצוות חולק</td><td>רוב הקבצים - כן <span class="badge b-commit">committed</span> מעט יוצאי דופן מסומנים</td></tr>
+<tr><td><strong>אישית-גלובלית</strong></td><td>‎<code>~/.claude/</code> ו-‎<code>~/.claude.json</code></td><td>ההעדפות האישיות שלך בכל הפרויקטים</td><td>לא. אף פעם לא עולה ל-repo <span class="badge b-local">local only</span></td></tr>
+<tr><td><strong>נתוני אפליקציה</strong></td><td>בתוך ‎<code>~/.claude/</code> (ובתיקיית temp)</td><td>מה ש-Claude Code כותב תוך כדי עבודה: transcripts, זיכרון אוטומטי, cache</td><td>לא <span class="badge b-auto">Claude writes</span></td></tr>
+</tbody>
+</table>
+<p>מעל כולן יושבת שכבה רביעית: <strong>הגדרות ארגוניות</strong> (managed settings) ש-IT מפיץ למחשבים - היא גוברת כמעט על כל דבר שאתם כותבים. נרחיב עליה בפרק ההגדרות.</p>
+<p>כך נראה העץ המלא. כל פריט בו מקבל פרק משלו בהמשך:</p>
+<pre><code>your-project/                    ← שכבת הפרויקט
+├── CLAUDE.md                    הוראות שהצוות חולק, נטען בכל סשן
+├── CLAUDE.local.md              הוראות אישיות לפרויקט, ב-gitignore
+├── AGENTS.md                    חלופה תקנית ל-CLAUDE.md (או לצדו)
+├── .mcp.json                    שרתי MCP משותפים לצוות
+├── .worktreeinclude             קבצים מ-gitignore להעתיק ל-worktrees
+└── .claude/
+    ├── CLAUDE.md                חלופה ל-CLAUDE.md בשורש
+    ├── settings.json            הרשאות, hooks, env - משותף לצוות
+    ├── settings.local.json      דריסות אישיות, מחוץ ל-git
+    ├── rules/                   הוראות נושאיות, אופציונלי: לפי נתיב קובץ
+    ├── skills/&lt;name&gt;/SKILL.md   פרומפטים לשימוש חוזר, /name
+    ├── commands/*.md            פרומפטים חד-קובציים (מנגנון זהה ל-skills)
+    ├── agents/*.md              subagents עם קונטקסט וכלים משלהם
+    ├── output-styles/*.md       סגנונות תגובה משותפים לצוות
+    ├── workflows/*.js           סקריפטים שמתזמרים subagents
+    └── agent-memory/            זיכרון מתמשך של subagents
+
+~/                               ← שכבה אישית-גלובלית
+├── .claude.json                 מצב אפליקציה, OAuth, שרתי MCP אישיים
+└── .claude/
+    ├── CLAUDE.md                העדפות אישיות בכל פרויקט
+    ├── settings.json            הגדרות ברירת מחדל לכל פרויקט
+    ├── keybindings.json         קיצורי מקלדת
+    ├── themes/*.json            ערכות צבעים
+    ├── rules/ skills/ commands/ output-styles/ agents/ workflows/
+    │                            אותם פורמטים, בהיקף "כל הפרויקטים שלי"
+    ├── agent-memory/            זיכרון subagents חוצה-פרויקטים
+    ├── plugins/                 plugins מותקנים ו-marketplaces
+    └── ... ונתוני אפליקציה: transcripts, זיכרון אוטומטי, cache
+        (פרק "נתוני סשן ואפליקציה" למטה)</code></pre>
+
+<div class="toc"><strong>תוכן העניינים:</strong>
+<a href="#claudemd">CLAUDE.md וקבצי הוראות</a>
+<a href="#automemory">Auto memory</a>
+<a href="#settings">קבצי הגדרות</a>
+<a href="#mcp">MCP</a>
+<a href="#extensions">Skills, commands, agents ועוד</a>
+<a href="#appdata">נתוני סשן ואפליקציה</a>
+<a href="#cleanup">ניקוי ומחיקה</a>
+<a href="#whichfile">איזה קובץ מתאים למה</a>
+<a href="#frontmatter">שדות frontmatter</a>
+<a href="#sources">מקורות</a>
+</div>
+
+<h2 id="claudemd">CLAUDE.md וקבצי ההוראות</h2>
+<p>קבצי <code>CLAUDE.md</code> הם קבצי Markdown שאתם כותבים, ו-Claude קורא אותם בתחילת כל סשן. הם <strong>הנחיה, לא אכיפה</strong>: Claude קורא אותם כהקשר, אבל אין מנגנון שמבטיח שהוא יציית. להתנהגות מובטחת משתמשים ב-hooks או ב-permissions (פרק ההגדרות).</p>
+
+<h3>ארבע הרמות של CLAUDE.md</h3>
+<table>
+<thead><tr><th>רמה</th><th>מיקום</th><th>למי זה מיועד</th><th>מה שמים שם</th></tr></thead>
+<tbody>
+<tr><td>מדיניות ארגונית</td><td>macOS: ‎<code>/Library/Application Support/ClaudeCode/CLAUDE.md</code> · Linux/WSL: ‎<code>/etc/claude-code/CLAUDE.md</code> · Windows: ‎<code>C:\Program Files\ClaudeCode\CLAUDE.md</code></td><td>כל המשתמשים בארגון (IT/DevOps)</td><td>סטנדרטים, מדיניות אבטחה, דרישות compliance</td></tr>
+<tr><td>משתמש</td><td>‎<code>~/.claude/CLAUDE.md</code></td><td>רק אתם, בכל הפרויקטים</td><td>סגנון תגובה, פורמט commits, קיצורים אישיים</td></tr>
+<tr><td>פרויקט</td><td>‎<code>./CLAUDE.md</code> או ‎<code>./.claude/CLAUDE.md</code></td><td>הצוות, דרך source control</td><td>ארכיטקטורה, פקודות build/test, קונבנציות</td></tr>
+<tr><td>לוקאלי</td><td>‎<code>./CLAUDE.local.md</code></td><td>רק אתם, בפרויקט הזה (להוסיף ל-‎<code>.gitignore</code>)</td><td>URLs של sandbox, דאטה לבדיקות</td></tr>
+</tbody>
+</table>
+
+<h3>איך הטעינה עובדת בפועל</h3>
+<ul>
+<li>בהפעלה נטענים ‎<code>CLAUDE.md</code> ו-‎<code>CLAUDE.local.md</code> מתיקיית העבודה <strong>וכל התיקיות מעליה</strong>. הרצה מתוך ‎<code>foo/bar/</code> טוענת גם את ‎<code>foo/CLAUDE.md</code>.</li>
+<li>הקבצים <strong>מחוברים זה לזה</strong> (concatenated), לא דורסים זה את זה. בסדר: משורש מערכת הקבצים ועד תיקיית העבודה; בתוך אותה תיקייה, ‎<code>CLAUDE.local.md</code> נקרא אחרון.</li>
+<li>קבצי ‎<code>CLAUDE.md</code> <strong>בתתי-תיקיות</strong> נטענים רק כש-Claude קורא קבצים שם - לא בהפעלה.</li>
+<li>כשהוראות מתנגשות, הוראת פרויקט גוברת על הוראה גלובלית.</li>
+<li>הערות HTML ברמת בלוק (‎<code>&lt;!-- ... --&gt;</code>) <strong>מוסרות</strong> לפני ההזרקה לקונטקסט - אפשר לכתוב הערות למתחזקים אנושיים בלי לבזבז tokens.</li>
+</ul>
+
+<h3>ייבוא קבצים עם ‎@</h3>
+<p>בתוך CLAUDE.md אפשר לייבא קבצים נוספים עם ‎<code>@path/to/file</code>. יחסי לקובץ שבו כתוב הייבוא, רקורסיבי עד עומק 4. ייבוא <em>חיצוני</em> (נתיב מחוץ לתיקיית העבודה, למשל ‎<code>@~/.claude/my-instructions.md</code>) מציג דיאלוג אישור בפעם הראשונה בפרויקט. כדי לציין נתיב בלי לייבא, עטפו ב-backticks.</p>
+
+<h3>כללי עבודה מומלצים</h3>
+<ul>
+<li><strong>עד 200 שורות</strong> לקובץ. קבצים ארוכים נטענים במלואם אבל פוגעים בדיוק הביצוע. גדל מעבר? מפצלים ל-rules (מיד).</li>
+<li><code>/init</code> מייצר CLAUDE.md התחלתי מהקוד. <code>/memory</code> פותח את הקובץ לעריכה מתוך סשן. <code>/context</code> מראה אילו קבצי זיכרון באמת נטענו.</li>
+<li>כותבים את מה שהייתם מסבירים שוב ושוב: פקודות build/test/lint, קונבנציות, מבנה. מה שרלוונטי רק למשימות מסוימות - עובר ל-skill או ל-rule.</li>
+</ul>
+
+<h3>AGENTS.md</h3>
+<p>אם ב-repo כבר יש ‎<code>AGENTS.md</code> (התקן המשותף לסוכני קוד), Claude Code יכול לטעון אותו לבדו או לצד CLAUDE.md. פרטים בדף <a href="https://code.claude.com/docs/en/memory#agents-md">memory</a>.</p>
+
+<h3>.claude/rules/ - הוראות נושאיות, אופציונלית לפי נתיב</h3>
+<p>תיקיית ‎<code>.claude/rules/</code> (וגם ‎<code>~/.claude/rules/</code>) מחזיקה הוראות מפוצלות לפי נושא. rule בלי <code>paths:</code> ב-frontmatter נטען בכל הפעלת סשן כמו CLAUDE.md; rule <strong>עם</strong> ‎<code>paths:</code> נטען רק כש-Claude קורא קובץ שמתאים ל-glob. זו הדרך להחזיק קונבנציות של frontend ו-backend באותו repo בלי לנפח את הקונטקסט של שתיהן.</p>
+<pre><code>---
+paths:
+  - "**/*.test.ts"
+  - "**/*.test.tsx"
+---
+
+# Testing Rules
+- Use descriptive test names
+- Mock external dependencies, not internal modules</code></pre>
+<ul>
+<li>תתי-תיקיות מתגלות אוטומטית: ‎<code>.claude/rules/frontend/react.md</code> עובד.</li>
+<li>חוק ברמת משתמש (‎<code>~/.claude/rules/</code>) חל על כל הפרויקטים.</li>
+<li>במונו-repo רועש: ‎<code>claudeMdExcludes</code> מדלג על קבצי CLAUDE.md של צוותים אחרים.</li>
+</ul>
+
+<h2 id="automemory">Auto memory - הזיכרון שקלוד כותב לעצמו</h2>
+<p>בנפרד מ-CLAUDE.md (שאתם כותבים), Claude Code שומר לעצמו פתקים בין סשנים: פקודות build שגילה, תובנות debugging, העדפות שתיקנתם אותו עליהן. זה דיפולט - מופעל אוטומטית.</p>
+<table>
+<thead><tr><th></th><th>CLAUDE.md</th><th>Auto memory</th></tr></thead>
+<tbody>
+<tr><td>מי כותב</td><td>אתם</td><td>Claude, תוך כדי עבודה</td></tr>
+<tr><td>איפה</td><td>בתוך הפרויקט / ‎<code>~/.claude/</code></td><td>‎<code>~/.claude/projects/&lt;project&gt;/memory/</code> - מחוץ ל-repo</td></tr>
+<tr><td>משותף לצוות</td><td>כן, דרך git</td><td>לא. מקומי למכונה בלבד</td></tr>
+<tr><td>מה טוב לו</td><td>הנחיות יציבות שאתם שולטים בהן</td><td>למידה מתיקונים בלי מאמץ</td></tr>
+</tbody>
+</table>
+<ul>
+<li><strong>המבנה:</strong> ‎<code>MEMORY.md</code> הוא האינדקס - 200 השורות הראשונות (עד 25KB) נטענות בכל הפעלה. קבצי נושא כמו ‎<code>debugging.md</code> נקראים on-demand כשמשימה רלוונטית עולה. כל קובץ נושא נושא <code>type</code> ב-frontmatter (למשל reference).</li>
+<li><strong>התיקייה נגזרת מה-repo:</strong> כל ה-worktrees ותתי-התיקיות של אותו repo חולקים זיכרון אחד.</li>
+<li><strong>שליטה:</strong> כיבוי/הדלקה ב-‎<code>/memory</code> (שומר ‎<code>autoMemoryEnabled</code> ב-settings), לפרויקט בודד ב-‎<code>.claude/settings.json</code>, או ‎<code>CLAUDE_CODE_DISABLE_AUTO_MEMORY=1</code>. מיקום אחר: ‎<code>autoMemoryDirectory</code> ב-settings.</li>
+<li><strong>עריכה ידנית מותרת:</strong> זה Markdown פשוט. אפשר לקרוא, לערוך ולמחוק - אבל Claude ימשיך לעדכן. דרך ‎<code>/memory</code> מדפדפים במה שנשמר.</li>
+<li>"תזכור שתמיד משתמשים ב-pnpm" - נשמר ב-auto memory. "תוסיף ל-CLAUDE.md" - נכתב ב-CLAUDE.md. ההבדל משנה למי שמשתף עם צוות.</li>
+</ul>
+
+<h2 id="settings">קבצי ההגדרות: settings.json וחבריו</h2>
+<p>בניגוד ל-CLAUDE.md, קבצי settings <strong>נאכפים</strong>: הרשאות, hooks ומשתני סביבה פועלים בין אם Claude "מסכים" ובין אם לא.</p>
+
+<h3>ארבע רמות + סדר קדימויות</h3>
+<table>
+<thead><tr><th>היקף</th><th>קובץ</th><th>על מי חל</th><th>ב-git?</th></tr></thead>
+<tbody>
+<tr><td>User</td><td>‎<code>~/.claude/settings.json</code></td><td>אתם, בכל פרויקט במכונה</td><td>לא</td></tr>
+<tr><td>Shared project</td><td>‎<code>.claude/settings.json</code></td><td>כל מי שעובד בתיקייה</td><td>כן - כך הצוות מקבל אותו <span class="badge b-commit">committed</span></td></tr>
+<tr><td>Project local</td><td>‎<code>.claude/settings.local.json</code></td><td>אתם, בפרויקט הזה בלבד</td><td>לא - Claude Code דואג ל-gitignore כשהוא שומר אליו <span class="badge b-gitig">gitignored</span></td></tr>
+<tr><td>Managed</td><td>‎<code>managed-settings.json</code> (מיקום תלוי OS), מדיניות MDM, או הגדרות מ-console של claude.ai</td><td>כל מי שהארגון מפיץ לו</td><td>-</td></tr>
+</tbody>
+</table>
+<p><strong>קדימויות, מהגבוה לנמוך:</strong> Managed → ארגומנטים בשורת הפקודה (‎<code>--settings</code>, ‎<code>--permission-mode</code>) → ‎<code>settings.local.json</code> → ‎<code>.claude/settings.json</code> → ‎<code>~/.claude/settings.json</code>. מפתח ברמה גבוהה דורס את אותו מפתח למטה. משתני סביבה הם לא רמה בסדר - לכל צד משתנה/מפתח כלל משלו (ראו <a href="https://code.claude.com/docs/en/env-vars#precedence">env vars reference</a>). הגדרה ארגונית גוברת כמעט תמיד - גם על ‎<code>--settings</code>; היוצא דופן המרכזי: ‎<code>model</code> ארגוני קובע את ברירת המחדל אבל עדיין אפשר להחליף ב-‎<code>/model</code>, והנעילה האמיתית היא ‎<code>availableModels</code>.</p>
+<ul>
+<li>הרשאות שאתם מאשרים בתוך סשן ("allow always") נשמרות ב-‎<code>.claude/settings.local.json</code>.</li>
+<li>מערכים כמו ‎<code>permissions.allow</code> <strong>מתאחדים</strong> בין הרמות; סקלרים כמו ‎<code>model</code> נלקחים מהרמה הספציפית ביותר.</li>
+<li>מה שמכניסים: ‎<code>permissions</code> (allow/deny/ask), ‎<code>hooks</code>, ‎<code>env</code>, ‎<code>model</code>, ‎<code>statusLine</code>, ‎<code>outputStyle</code> ועוד.</li>
+</ul>
+
+<div class="fcard"><h4><code>~/.claude.json</code> <span class="badge b-local">local only</span></h4>
+<p>מצב אפליקציה, לא הגדרות: theme, סשן OAuth, החלטות trust לכל פרויקט (מפתח ‎<code>projects</code>), טוגלים של IDE (‎<code>autoConnectIde</code>), ושרתי ה-MCP <strong>האישיים</strong> שלכם. בדרך כלל מנהלים דרך ‎<code>/config</code> ולא עורכים ידנית. גיבויים אוטומטיים של הקובץ נשמרים ב-‎<code>~/.claude/backups/</code> (חמשת האחרונים).</p></div>
+
+<div class="fcard"><h4><code>~/.claude/keybindings.json</code> <span class="badge b-local">local only</span></h4>
+<p>קיצורי מקלדת מותאמים ל-CLI. ‎<code>/keybindings</code> פותח את הקובץ עם schema. נטען בהפעלה ומתרענן חם בעריכה. Ctrl+C, Ctrl+D, Ctrl+M ו-Caps Lock שמורים ולא ניתנים לשיבוץ מחדש.</p></div>
+
+<div class="fcard"><h4><code>~/.claude/themes/*.json</code> <span class="badge b-local">local only</span></h4>
+<p>ערכת צבעים לכל קובץ: ‎<code>base</code> מתוך הערכות המובנות + ‎<code>overrides</code> של טוקני צבע. יוצרים אינטראקטיבית עם ‎<code>/theme</code> או כותבים JSON ידנית.</p></div>
+
+<h2 id="mcp">MCP: ‎.mcp.json ושרתים חיצוניים</h2>
+<table>
+<thead><tr><th>קובץ</th><th>היקף</th><th>למי</th></tr></thead>
+<tbody>
+<tr><td>‎<code>.mcp.json</code> בשורש הפרויקט <span class="badge b-commit">committed</span></td><td>Project</td><td>הצוות כולו - שרתים משותפים</td></tr>
+<tr><td>‎<code>~/.claude.json</code> (מפתח ‎<code>mcpServers</code>)</td><td>User / local</td><td>שרתים אישיים; ‎<code>claude mcp add --scope user</code> כותב לכאן</td></tr>
+</tbody>
+</table>
+<ul>
+<li>‎<code>.mcp.json</code> גר <strong>בשורש הפרויקט, לא בתוך ‎<code>.claude/</code></strong>.</li>
+<li>סודות לא כותבים בקובץ: הפניה למשתנה סביבה ‎<code>"${NOTION_TOKEN}"</code> נקראת מה-shell בזמן ההפעלה.</li>
+<li>schemas של כלים נטענים עצלנית (tool search) כברירת מחדל, כדי לא לנפח את הקונטקסט.</li>
+</ul>
+<pre><code>{
+  "mcpServers": {
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "@notionhq/notion-mcp-server"],
+      "env": { "NOTION_TOKEN": "${NOTION_TOKEN}" }
+    }
+  }
+}</code></pre>
+
+<h2 id="extensions">ההרחבות: skills, commands, agents, output-styles, workflows</h2>
+<p>כל ההרחבות קיימות בשתי רמות: ‎<code>.claude/</code> בפרויקט (משותף לצוות) ו-‎<code>~/.claude/</code> (אישי, בכל הפרויקטים). פורמט זהה, היקף שונה.</p>
+
+<div class="fcard"><h4><code>skills/&lt;name&gt;/SKILL.md</code> <span class="badge b-commit">committed בפרויקט</span></h4>
+<p>פרומפט לשימוש חוזר שמופעל ב-‎<code>/skill-name</code> או אוטומטית כש-Claude מזהה התאמה. כל skill הוא <strong>תיקייה</strong>: ‎<code>SKILL.md</code> ולצדו קבצי עזר (templates, checklists, סקריפטים) ש-Claude קורא on-demand - נתיב תיקיית ה-skill זמין לו, ובסקריפטים משתמשים ב-‎<code>${CLAUDE_SKILL_DIR}</code>.</p>
+<div class="when">מתי נטען: בהקלדת /name, או כשה-description ב-frontmatter מתאים למשימה.</div>
+<p>שליטה ב-frontmatter: ‎<code>disable-model-invocation: true</code> (רק אתם מפעילים), ‎<code>user-invocable: false</code> (מוסתר מהתפריט אבל Claude יכול). ארגומנטים: ‎<code>$ARGUMENTS</code>, ‎<code>$0</code>, ‎<code>$1</code>. שורת ‎<code>!`command`</code> מריצה פקודת shell ומזריקה את הפלט לפרומפט <strong>לפני</strong> שהמודל רואה אותו.</p></div>
+
+<div class="fcard"><h4><code>commands/*.md</code> <span class="badge b-commit">committed בפרויקט</span></h4>
+<p>פרומפטים חד-קובציים שמופעלים ב-‎<code>/name</code>. <strong>אותו מנגנון בדיוק כמו skills</strong> - ‎<code>commands/deploy.md</code> יוצר את ‎<code>/deploy</code> בדיוק כמו ‎<code>skills/deploy/SKILL.md</code>, ושניהם יכולים לעלות אוטומטית. ההבדל: skill הוא תיקייה ולכן יכול לאגוד קבצי עזר. אם קיימים skill ו-command באותו שם - ה-skill מנצח. לדברים חדשים: כותבים skills; commands נשאר נתמך.</p></div>
+
+<div class="fcard"><h4><code>agents/*.md</code> <span class="badge b-commit">committed בפרויקט</span></h4>
+<p>כל קובץ מגדיר <strong>subagent</strong>: system prompt משלו, גישת כלים משלו (‎<code>tools:</code>), ואופציונלית מודל משלו. רץ בחלון קונטקסט נפרד, כך שהשיחה הראשית נשארת נקייה. ה-‎<code>description</code> קובע מתי Claude מעביר אליו משימות אוטומטית; אפשר גם להקיש ‎<code>@</code> ולבחור אותו. דוגמה קלאסית: reviewer עם ‎<code>tools: Read, Grep, Glob</code> - יכול לבדוק אבל אף פעם לא לערוך.</p></div>
+
+<div class="fcard"><h4><code>output-styles/*.md</code> <span class="badge b-local">בדרך כלל אישי</span></h4>
+<p>סט הוראות שמשנה איך Claude עובד - ובברירת מחדל גם <strong>מחליף</strong> את הוראות הנדסת-התוכנה המובנות (‏‎<code>keep-coding-instructions: true</code> משאיר אותן). בוחרים עם ‎<code>/output-style</code> או מפתח ‎<code>outputStyle</code> ב-settings. בדרך כלל אישי (‎<code>~/.claude/output-styles/</code>); שמים בפרויקט רק סגנון שהצוות חולק. סגנון פרויקט באותו שם גובר על אישי.</p></div>
+
+<div class="fcard"><h4><code>workflows/*.js</code></h4>
+<p>סקריפטים של dynamic workflows שמתזמרים הרבה subagents - נכתבים על ידי Claude ונשמרים מתוך ‎<code>/workflows</code> (מקש ‎<code>s</code>), לא נכתבים מאפס. כל קובץ הופך לפקודת ‎<code>/name</code>. workflow של פרויקט גובר על אישי באותו שם.</p></div>
+
+<div class="fcard"><h4><code>agent-memory/&lt;agent-name&gt;/MEMORY.md</code> <span class="badge b-auto">Claude writes</span></h4>
+<p>זיכרון מתמשך <strong>ל-subagents</strong> - נפרד מה-auto memory של הסשן הראשי. נוצר רק לסוכנים עם ‎<code>memory:</code> ב-frontmatter: ‎<code>memory: project</code> כותב ל-‎<code>.claude/agent-memory/</code> (משותף ב-git), ‎<code>memory: local</code> ל-‎<code>.claude/agent-memory-local/</code> (מחוץ ל-git), ו-‎<code>memory: user</code> ל-‎<code>~/.claude/agent-memory/</code> (חוצה פרויקטים). הסוכן כותב ומתחזק את הקובץ בעצמו; 200 השורות הראשונות (עד 25KB) נטענות ל-system prompt שלו בכל ריצה.</p></div>
+
+<div class="fcard"><h4><code>~/.claude/plugins/</code></h4>
+<p>Plugins מותקנים, marketplaces משובטים, רישום ההתקנות ‎<code>installed_plugins.json</code> ונתוני plugin - מנוהל על ידי פקודות ‎<code>claude plugin</code>. Plugins שמסונכרנים מחשבון claude.ai יורדים ל-‎<code>plugins/synced/</code>. אל תערכו ידנית.</p></div>
+
+<h3>שני קבצי פרויקט נוספים בשורש</h3>
+<div class="fcard"><h4><code>.worktreeinclude</code> <span class="badge b-commit">committed</span></h4>
+<p>רשימת קבצים מ-gitignore (בתחביר ‎<code>.gitignore</code>) ש-Claude Code <strong>מעתיק</strong> לכל worktree חדש שהוא יוצר (‎<code>--worktree</code>, subagent עם ‎<code>isolation: worktree</code>). בלעדיו, worktree הוא checkout נקי - בלי ‎<code>.env</code>, בלי סודות מקומיים. רק קבצים שגם מתאימים לתבנית וגם מ-gitignored מועתקים.</p></div>
+
+<h2 id="appdata">נתוני סשן ואפליקציה: מה Claude Code כותב תוך כדי עבודה</h2>
+<p>מעבר לקבצים שאתם כותבים, ‎<code>~/.claude/</code> מחזיק את מה שהכלי עצמו כותב. כל אלה <strong>טקסט גלוי, לא מוצפן</strong> - הרשאות הקבצים של מערכת ההפעלה הן ההגנה היחידה. כל דבר שעובר דרך כלי - תוכן קובץ, פלט פקודה, טקסט שהודבק - נכתב ל-transcript על הדיסק.</p>
+
+<h3>Transcripts - ‎projects/&lt;project&gt;/&lt;session&gt;.jsonl</h3>
+<p>כל סשן נשמר רציף כ-JSONL: כל הודעה, כל קריאת כלי, כל תוצאה. ‎<code>&lt;project&gt;</code> הוא נתיב תיקיית העבודה עם תווים לא-אלפאנומריים שהוחלפו ב-‎<code>-</code> (שם ארוך מדי נחתך ל-200 תווים + hash). זה מה שמאפשר ‎<code>claude --continue</code>, ‎<code>--resume</code> והבורר ‎<code>/resume</code>.</p>
+<ul>
+<li><strong>מה אפשר לעשות איתם:</strong> להמשיך סשן אחרי יציאה (‎<code>claude -c</code>), לענף סשן (‎<code>/branch</code> מעתיק את ה-transcript), לייצא (‎<code>/export</code> לקריאה אנושית), לקרוא את ‎<code>transcript_path</code> בתוך hook או status line, ולארכב ב-‎<code>SessionEnd</code> hook.</li>
+<li>‎<code>subagents/</code> תחת תיקיית הסשן: transcripts של subagents; ‎<code>tool-results/</code>: פלטים גדולים שהופנו לקבצים נפרדים ותמונות מ-MCP.</li>
+<li>קבצי ‎<code>.orphaned-*.jsonl</code> ו-‎<code>.superseded-*</code>: גרסאות קודמות שהכלי שם בצד במקום לדרוס; לא מופיעים בבורר הסשנים.</li>
+<li>שליטה בשם תיקיית הפרויקט: ‎<code>CLAUDE_CODE_PROJECT_DIR_NAME</code> (יחד עם ‎<code>CLAUDE_CONFIG_DIR</code>, דורש v2.1.234+).</li>
+</ul>
+
+<h3>מה מנוקה אוטומטית</h3>
+<p>Claude Code מוחק את הנתיבים הבאים כשהם מבוגרים מ-‎<code>cleanupPeriodDays</code> - ברירת מחדל <strong>30 יום</strong>, מינימום 1 (ערך 0 נכשל בולידציה):</p>
+<table>
+<thead><tr><th>נתיב תחת ‎~/.claude/</th><th>תוכן</th></tr></thead>
+<tbody>
+<tr><td>‎<code>projects/&lt;project&gt;/&lt;session&gt;.jsonl</code></td><td>Transcript מלא: כל הודעה, קריאת כלי ותוצאה</td></tr>
+<tr><td>‎<code>projects/.../&lt;session&gt;/subagents/</code> · ‎<code>tool-results/</code></td><td>Transcripts של subagents; פלטי כלים גדולים ותמונות MCP</td></tr>
+<tr><td>‎<code>file-history/&lt;session&gt;/</code></td><td>סנאפשוטים של קבצים לפני עריכה - הבסיס ל-checkpoint restore (100 checkpoints אחרונים)</td></tr>
+<tr><td>‎<code>plans/</code></td><td>תוכניות מ-plan mode</td></tr>
+<tr><td>‎<code>debug/</code></td><td>לוגים לכל סשן כש-debug פעיל (‎<code>--debug</code> או ‎<code>/debug</code>)</td></tr>
+<tr><td>‎<code>paste-cache/</code></td><td>תוכן של הדבקות גדולות</td></tr>
+<tr><td>‎<code>image-cache/&lt;session&gt;/</code></td><td>תמונות מצורפות ב-v2.1.274 ומטה; גרסאות חדשות שומרות תמונות מחוץ ל-‎~/.claude, בתיקיית ה-temp</td></tr>
+<tr><td>‎<code>uploads/&lt;session&gt;/</code></td><td>קבצים שצורפו מה-web/מובייל לסשן Remote Control</td></tr>
+<tr><td>‎<code>session-env/</code></td><td>מטא-דאטה סביבתי לכל סשן</td></tr>
+<tr><td>‎<code>tasks/</code></td><td>רשימות משימות של כלי ה-tasks, תיקייה לכל רשימה</td></tr>
+<tr><td>‎<code>shell-snapshots/</code></td><td>Aliases ופונקציות shell מההפעלה, לכלי Bash. מנוקה ביציאה נקייה; ה-sweep מפנה שאריות של קריסה</td></tr>
+<tr><td>‎<code>backups/</code></td><td>גרסאות קודמות של ‎~/.claude.json - חמש אחרונות + כל גרסה שהכלי לא הצליח לפרסר</td></tr>
+<tr><td>‎<code>feedback-bundles/</code> · ‎<code>feedback/drafts/</code></td><td>ארכיוני feedback מצונזרים וטיוטות ממתינות ל-‎/feedback</td></tr>
+<tr><td>‎<code>usage-data/</code></td><td>דוחות ‎/insights (‎<code>report.html</code> ועותקים מתוארכים) + cache של הניתוח</td></tr>
+<tr><td>‎<code>skills/.trash/</code> · ‎<code>plugins/.trash/</code></td><td>Skills ו-plugins שסנכרון claude.ai הסיר - סיכוי שחזור עד שה-sweep מוחק</td></tr>
+<tr><td>‎<code>todos/</code> · ‎<code>statsig/</code> · ‎<code>logs/</code></td><td>תיקיות legacy מגרסאות ישנות; כבר לא נכתבות וה-sweep מסיר אותן</td></tr>
+</tbody>
+</table>
+<p>כללים מיוחדים: ‎<code>sessions/</code> (קובץ קטן לכל סשן פעיל, לזיהוי סשנים מקבילים וקריסות) אינו חלק מה-sweep - נמחק ביציאת הסשן. <strong>Auto memory לא נמחק ב-sweep</strong> - רק אם תיקיית הזיכרון ריקה כל תקופת השמירה. Transcripts של Claude Desktop ו-Cowork נשמרים ללא הגבלת גיל אלא אם מגדירים ‎<code>desktopSessionCleanupPeriodDays</code> (v2.1.248+). ה-sweep מושהה ב-‎<code>--bare</code> וכשאי אפשר לקבוע בטוח את תקופת השמירה.</p>
+
+<h3>מה נשמר עד שתמחקו</h3>
+<table>
+<thead><tr><th>נתיב</th><th>תוכן</th></tr></thead>
+<tbody>
+<tr><td>‎<code>history.jsonl</code></td><td>כל פרומפט שהקלדתם, עם timestamp ונתיב פרויקט - מאחורי חץ-למעלה, ‎Ctrl+R והשלמת ‎<code>!</code></td></tr>
+<tr><td>‎<code>stats-cache.json</code></td><td>סיכומי tokens ועלות ש-‎<code>/usage</code> מציג</td></tr>
+<tr><td>‎<code>remote-settings.json</code></td><td>Cache של הגדרות ארגוניות מהשרת; נמחק ב-logout</td></tr>
+<tr><td>‎<code>cache/changelog.md</code></td><td>ה-changelog ש-‎<code>/release-notes</code> מציג, מתרענן ברקע</td></tr>
+<tr><td>‎<code>policy-limits.json</code></td><td>מדיניות פיצ'רים ארגונית (בחלק מסוגי החשבון); נמחק ב-logout</td></tr>
+<tr><td>‎<code>.credentials.json</code></td><td>פרטי ההתחברות. <strong>לא למחוק</strong></td></tr>
+<tr><td>‎<code>agent-memory/</code> · ‎<code>jobs/</code> · ‎<code>daemon/</code></td><td>זיכרון subagents ומצב סשנים ברקע. לשמור</td></tr>
+</tbody>
+</table>
+
+<h3>תיקיית ה-scratchpad</h3>
+<p>לכל סשן יש תיקיית עבודה זמנית משלו (קבצי ביניים, סקריפטים, טיוטות) - כש-Claude אומר "שמרתי ב-scratchpad", זה שם. נמצאת תחת תיקיית temp, לא תחת ‎<code>~/.claude</code>: לינוקס ‎<code>/tmp/claude-&lt;uid&gt;/&lt;project&gt;/&lt;session-id&gt;/scratchpad/</code> (או תחת ‎<code>$TMPDIR</code>/‎<code>CLAUDE_CODE_TMPDIR</code>), macOS ‎<code>/private/tmp/claude-&lt;uid&gt;/...</code>, ו-Windows ‎<code>%TEMP%\claude\...</code>. Hooks מקבלים את הנתיב כ-‎<code>scratchpad_dir</code>. היא נמחקת עם ה-transcript של הסשן, ומערכת ההפעלה עלולה לפנות temp מוקדם יותר - דבר שצריך להישאר? בקשו מ-Claude להעביר לפרויקט.</p>
+
+<h3>אזהרת אבטחה: הכל טקסט גלוי</h3>
+<blockquote><p>אם כלי קרא קובץ ‎.env או פקודה הדפיסה סוד - הערך נכתב ל-‎<code>projects/&lt;project&gt;/&lt;session&gt;.jsonl</code>. להקטנת החשיפה: להוריד את ‎<code>cleanupPeriodDays</code>, להגדיר ‎<code>CLAUDE_CODE_SKIP_PROMPT_HISTORY</code> לדילוג על כתיבת transcripts והיסטוריה (במצב לא-אינטראקטיבי: ‎<code>--no-session-persistence</code> לצד ‎<code>-p</code>), ולהשתמש ב-permission rules כדי לחסום קריאת קבצי credentials.</p></blockquote>
+
+<h2 id="cleanup">ניקוי ומחיקה: ‎claude project purge</h2>
+<p>הפקודה ‎<code>claude project purge</code> מוחקת את כל מה שהכלי שומר על פרויקט אחד:</p>
+<ul>
+<li>Transcripts ו-auto memory תחת ‎<code>projects/</code></li>
+<li>רשומות ‎<code>tasks/</code>, ‎<code>debug/</code> ו-‎<code>file-history/</code> של הסשנים</li>
+<li>שורות הפרויקט ב-‎<code>history.jsonl</code></li>
+<li>רשומת הפרויקט ב-‎<code>~/.claude.json</code></li>
+</ul>
+<p>היא <strong>לא</strong> נוגעת ב-‎<code>shell-snapshots/</code>, ‎<code>backups/</code>, ובתמונות/scratchpad שבתיקיית temp. הפקודה מדפיסה תוכנית מחיקה מלאה ומבקשת אישור לפני שמוחקת כלום:</p>
+<pre><code># תצוגה מקדימה בלי מחיקה
+claude project purge ~/work/my-repo --dry-run
+
+# מחיקה עם אישור
+claude project purge ~/work/my-repo
+
+# בלי אישור (לסקריפטים) · כל הפרויקטים · שלב אחד בכל פעם
+claude project purge ~/work/my-repo --yes
+claude project purge --all
+claude project purge ~/work/my-repo -i</code></pre>
+
+<h3>מה מפסידים במחיקה ידנית</h3>
+<p>אפשר למחוק ידנית כל נתיב מנתוני האפליקציה (מלבד קבצי המצב שצוינו לשמירה). סשנים חדשים לא מושפעים - רק ההיסטוריה:</p>
+<table>
+<thead><tr><th>מוחקים</th><th>מפסידים</th></tr></thead>
+<tbody>
+<tr><td>‎<code>~/.claude/projects/</code></td><td>Resume/continue/rewind של סשנים ישנים, ו-auto memory של כל הפרויקטים</td></tr>
+<tr><td>‎<code>~/.claude/history.jsonl</code></td><td>חץ-למעלה, חיפוש ‎Ctrl+R והשלמת ‎<code>!</code></td></tr>
+<tr><td>‎<code>~/.claude/file-history/</code></td><td>Checkpoint restore של סשנים ישנים</td></tr>
+<tr><td>‎<code>~/.claude/stats-cache.json</code></td><td>סיכומים היסטוריים ב-‎<code>/usage</code></td></tr>
+<tr><td>‎<code>~/.claude/usage-data/</code></td><td>דוחות ‎/insights ישנים</td></tr>
+<tr><td>‎<code>~/.claude/remote-settings.json</code>, ‎<code>cache/changelog.md</code>, ‎<code>policy-limits.json</code></td><td>כלום - מתחדש אוטומטית</td></tr>
+<tr><td>‎<code>~/.claude/debug/</code>, ‎<code>plans/</code>, ‎<code>session-env/</code>, ‎<code>shell-snapshots/</code>, ‎<code>backups/</code></td><td>כלום גלוי למשתמש</td></tr>
+<tr><td>‎<code>~/.claude/todos/</code>, ‎<code>statsig/</code>, ‎<code>logs/</code>, ‎<code>image-cache/</code></td><td>כלום - תיקיות legacy שלא נכתבות בגרסאות נוכחיות</td></tr>
+</tbody>
+</table>
+<p><strong>לא למחוק:</strong> ‎<code>~/.claude.json</code>, ‎<code>~/.claude/settings.json</code> ו-‎<code>~/.claude/plugins/</code> - שם האימות, ההעדפות וה-plugins.</p>
+
+<h2 id="whichfile">איזה קובץ מתאים למה: טבלת החלטה</h2>
+<table>
+<thead><tr><th>רוצים ל...</th><th>עורכים</th><th>היקף</th></tr></thead>
+<tbody>
+<tr><td>לתת ל-Claude קונטקסט וקונבנציות של הפרויקט</td><td>‎<code>CLAUDE.md</code></td><td>פרויקט או גלובלי</td></tr>
+<tr><td>לאפשר/לחסום קריאות כלי ספציפיות</td><td>‎<code>permissions</code> או ‎<code>hooks</code> ב-‎<code>settings.json</code></td><td>פרויקט או גלובלי</td></tr>
+<tr><td>להריץ סקריפט לפני/אחרי קריאת כלי</td><td>‎<code>hooks</code> ב-‎<code>settings.json</code></td><td>פרויקט או גלובלי</td></tr>
+<tr><td>משתני סביבה לסשן</td><td>‎<code>env</code> ב-‎<code>settings.json</code></td><td>פרויקט או גלובלי</td></tr>
+<tr><td>דריסות אישיות מחוץ ל-git</td><td>‎<code>settings.local.json</code></td><td>פרויקט בלבד</td></tr>
+<tr><td>פרומפט/יכולת שמופעלים ב-‎/name</td><td>‎<code>skills/&lt;name&gt;/SKILL.md</code></td><td>פרויקט או גלובלי</td></tr>
+<tr><td>Subagent מומחה עם כלים משלו</td><td>‎<code>agents/*.md</code></td><td>פרויקט או גלובלי</td></tr>
+<tr><td>תזמור הרבה subagents מסקריפט</td><td>‎<code>workflows/*.js</code></td><td>פרויקט או גלובלי</td></tr>
+<tr><td>חיבור כלים חיצוניים (MCP)</td><td>‎<code>.mcp.json</code></td><td>פרויקט בלבד (אישי: ‎<code>~/.claude.json</code>)</td></tr>
+<tr><td>שינוי פורמט התגובות</td><td>‎<code>output-styles/*.md</code></td><td>פרויקט או גלובלי</td></tr>
+</tbody>
+</table>
+
+<h2 id="frontmatter">שדות frontmatter לפי סוג קובץ</h2>
+<p>Skills, commands, subagents, output styles ו-rules קוראים את ההגדרות שלהם מ-YAML frontmatter בראש הקובץ. לכל סוג שדות משלו:</p>
+<table>
+<thead><tr><th>קובץ</th><th>שדות</th></tr></thead>
+<tbody>
+<tr><td>‎<code>skills/&lt;name&gt;/SKILL.md</code></td><td><code>name</code>, <code>description</code>, <code>when_to_use</code>, <code>argument-hint</code>, <code>arguments</code>, <code>disable-model-invocation</code>, <code>user-invocable</code>, <code>allowed-tools</code>, <code>disallowed-tools</code>, <code>model</code>, <code>effort</code>, <code>context</code>, <code>agent</code>, <code>background</code>, <code>hooks</code>, <code>paths</code>, <code>shell</code>, <code>metadata</code>, <code>license</code>, <code>compatibility</code></td></tr>
+<tr><td>‎<code>commands/*.md</code></td><td>שדות ה-skill חוץ מ-‎<code>name</code> ו-‎<code>paths</code></td></tr>
+<tr><td>‎<code>agents/*.md</code></td><td><code>name</code>, <code>description</code>, <code>tools</code>, <code>disallowedTools</code>, <code>model</code>, <code>permissionMode</code>, <code>maxTurns</code>, <code>skills</code>, <code>mcpServers</code>, <code>hooks</code>, <code>memory</code>, <code>background</code>, <code>effort</code>, <code>isolation</code>, <code>color</code>, <code>initialPrompt</code>, <code>omitClaudeMd</code>, <code>experimental</code></td></tr>
+<tr><td>‎<code>output-styles/*.md</code></td><td><code>name</code>, <code>description</code>, <code>keep-coding-instructions</code>, <code>force-for-plugin</code></td></tr>
+<tr><td>‎<code>rules/*.md</code></td><td><code>paths</code></td></tr>
+</tbody>
+</table>
+
+<h2 id="sources">מקורות</h2>
+<p>המדריך נסמך על התיעוד הרשמי של Claude Code, כפי שנקרא ב-27.9.2026:</p>
+<ul>
+<li><a href="https://code.claude.com/docs/en/claude-directory">Explore the .claude directory</a> - עץ הקבצים המלא, נתוני אפליקציה, כללי ניקוי ו-‎claude project purge</li>
+<li><a href="https://code.claude.com/docs/en/memory">How Claude remembers your project</a> - רמות CLAUDE.md, ייבוא, rules, auto memory</li>
+<li><a href="https://code.claude.com/docs/en/settings">Claude Code settings</a> - ארבע הרמות וסדר הקדימויות</li>
+<li><a href="https://code.claude.com/docs/en/sessions">Manage sessions</a> - אחסון transcripts ו-resume</li>
+<li><a href="https://code.claude.com/docs/en/skills">Extend Claude with skills</a> - skills ו-commands</li>
+<li><a href="https://code.claude.com/docs/en/sub-agents">Create custom subagents</a> - agents וזיכרון מתמשך</li>
+<li><a href="https://code.claude.com/docs/en/mcp">Connect Claude Code to tools via MCP</a> - ‎.mcp.json והיקפים</li>
+<li><a href="https://code.claude.com/docs/en/workflows">Dynamic workflows</a> · <a href="https://code.claude.com/docs/en/output-styles">Output styles</a> · <a href="https://code.claude.com/docs/en/worktrees">Worktrees</a></li>
+</ul>
+<p>מה שלא אומת: המדריך לא נבדק מול התקנה חיה של Claude Code במכונה הזו - כל התוכן מבוסס תיעוד רשמי בלבד, כולל דוגמאות ה-JSON. מספרי גרסאות שצוטטו (‎v2.1.234, ‎v2.1.274, ‎v2.1.248) הם כפי שמופיעים בתיעוד. פריטים שהתיעוד מסמן כמחייבי גרסה עדכנית עשויים לא להתקיים בגרסה מותקנת ישנה יותר.</p>
+</main>
+<footer><div class="wrap"><div>DATA&amp;AI / מדריכים - סדרת מדריכי Claude בעברית</div><div>עודכן: 27 בספטמבר 2026 · מבוסס על <a href="https://code.claude.com/docs/en/claude-directory" style="color:#e9e9ec">התיעוד הרשמי</a></div></div></footer>
+</body>
+</html>
